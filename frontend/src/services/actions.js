@@ -91,6 +91,7 @@ export function fetchUserData(token) {
       }
 
       const data = await response.json();
+      console.log(data)
       dispatch(actions.userDataResolved(token, data.body));
     } catch (error) {
       dispatch(actions.userDataRejected(error.message));

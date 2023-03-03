@@ -24,6 +24,7 @@ function SignIn() {
     const remember = document.getElementById("remember-me").checked;
     const userLogin = { email, password };
     const token = await dispatch(fetchUserToken(userLogin));
+    console.log(token)
 
     if (!token) {
       setInvalid(true);
