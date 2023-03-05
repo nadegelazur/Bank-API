@@ -10,7 +10,6 @@ import {
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 
-
 function SignIn() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -20,17 +19,14 @@ function SignIn() {
 
   async function login(e) {
     e.preventDefault();
-
     const remember = document.getElementById("remember-me").checked;
     const userLogin = { email, password };
     const token = await dispatch(fetchUserToken(userLogin));
     console.log(token)
-
     if (!token) {
       setInvalid(true);
       return;
     }
-
     setInvalid(false);
     dispatch(fetchUserData(token));
 
@@ -40,7 +36,6 @@ function SignIn() {
 
     navigate("/profile");
   }
-
   return (
     <main className="main bg-dark">
       <section className="sign-in-content">
@@ -73,7 +68,9 @@ function SignIn() {
           <button className="sign-in-button">Sign In</button>
         </form>
         {invalid ? (
-          <div className="messageConnexionError">Email ou mot de passe sont incorrects</div>
+          <div className="messageConnexionError">
+            Email ou mot de passe sont incorrects
+          </div>
         ) : null}
       </section>
     </main>

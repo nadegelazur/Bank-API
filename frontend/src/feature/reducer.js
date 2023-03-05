@@ -7,7 +7,6 @@ const initialState = {
   error: null,
   token: null,
 };
-
 const { actions, reducer } = createSlice({
   name: "login",
   initialState,
@@ -89,8 +88,7 @@ const { actions, reducer } = createSlice({
           return;
         }
       },
-    },
-    
+    },   
     userTokenResolved: {
       prepare: (userLogin, token) => ({
         payload: { userLogin, token },
@@ -108,8 +106,7 @@ const { actions, reducer } = createSlice({
           return;
         }
       },
-    },
-    
+    },    
     userTokenRejected: {
       prepare: (userLogin, error) => ({
         payload: { userLogin, error },
@@ -129,7 +126,6 @@ const { actions, reducer } = createSlice({
         }
       },
     },
-    
     userUpdateProfile: {
       prepare: (token, firstName, lastName) => ({
         payload: { token, firstName, lastName },
@@ -139,8 +135,7 @@ const { actions, reducer } = createSlice({
         state.data.lastName = action.payload.lastName;
         return;
       },
-    },
-    
+    },   
     reset: {
       reducer: () => {
         return initialState;

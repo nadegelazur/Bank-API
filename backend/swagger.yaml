@@ -113,7 +113,7 @@ paths:
         '500':
           description: Internal Server Error
   /user/profile/monthTransactions:
-    post:
+    get:
       security:
         - Bearer: []
       tags:
@@ -145,7 +145,7 @@ paths:
         '500':
           description: Internal Server Error
   /user/profile/detailsTransaction:
-    post:
+    get:
       security:
         - Bearer: []
       tags:
@@ -177,7 +177,7 @@ paths:
         '500':
           description: Internal Server Error        
   /user/profile/addInfoTransaction:
-    post:
+    put:
       security:
         - Bearer: []
       tags:
@@ -312,7 +312,7 @@ definitions:
         description: Account ID
       month:
         type: string
-        example: 2022-11
+        example: 2023-03
         description: Selected month (date String))
   MonthTransactionsResponse:
     type: object
@@ -338,6 +338,9 @@ definitions:
         accountId:
           type: number
           description: Account ID
+        date:
+          type: number
+          description: Date
         description:
           type: string
           example: Fly Paris -> Alger

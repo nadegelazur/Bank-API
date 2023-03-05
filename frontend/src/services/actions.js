@@ -52,7 +52,6 @@ export function fetchUserToken(userLogin) {
 export function fetchUserData(token) {
   return async (dispatch, getState) => {
     const status = selectUser(getState()).dataStatus;
-
     if (status === "pending" || status === "updating") {
       return;
     }
@@ -60,29 +59,24 @@ export function fetchUserData(token) {
       dispatch(signOut());
       return <SignIn />;
     }
-
     dispatch(actions.userDataFetching(token));
-
     const options = {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
       },
     };
-
     try {
       const response = await fetch(
         "http://localhost:3001/api/v1/user/profile",
         options
       );
-
       if (response.status === 400) {
         console.log("invalid fields");
       }
       if (response.status === 401) {
         dispatch(signOut());
       }
-
       const data = await response.json();
       console.log(data)
       dispatch(actions.userDataResolved(token, data.body));
