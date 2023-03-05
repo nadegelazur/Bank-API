@@ -12,7 +12,6 @@ const { actions, reducer } = createSlice({
   name: "login",
   initialState,
   reducers: {
-
     userDataFetching: {
       prepare: (token) => ({
         payload: { token },
@@ -35,8 +34,7 @@ const { actions, reducer } = createSlice({
           return;
         }
       },
-    },
-    
+    },    
     userDataResolved: {
       prepare: (token, data) => ({
         payload: { token, data },
@@ -52,8 +50,7 @@ const { actions, reducer } = createSlice({
           return;
         }
       },
-    },
-    
+    },   
     userDataRejected: {
       prepare: (token, error) => ({
         payload: { token, error },
@@ -69,8 +66,7 @@ const { actions, reducer } = createSlice({
           return;
         }
       },
-    },
-    
+    },    
     userTokenFetching: {
       prepare: (userLogin) => ({
         payload: { userLogin },

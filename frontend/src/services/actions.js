@@ -14,16 +14,13 @@ export function setRemember(token, remember) {
   localStorage.setItem("token", token);
   localStorage.setItem("isRemembered", remember);
 }
-
 export function fetchUserToken(userLogin) {
   return async (dispatch, getState) => {
     const tokenStatus = selectUser(getState()).tokenStatus;
-
     if (tokenStatus === "pending" || tokenStatus === "updating") {
       return;
     }
     dispatch(actions.userTokenFetching(userLogin));
-
     const options = {
       method: "POST",
       headers: {
@@ -31,22 +28,18 @@ export function fetchUserToken(userLogin) {
       },
       body: JSON.stringify(userLogin),
     };
-
     try {
       const response = await fetch(
         "http://localhost:3001/api/v1/user/login",
         options
       );
-
       if (response.status === 400) {
         console.log("invalid fields");
       }
       if (response.status === 401) {
         dispatch(actions.reset());
       }
-
       const data = await response.json();
-
       dispatch(actions.userTokenResolved(data.body.token));
 
       return data.body.token;
